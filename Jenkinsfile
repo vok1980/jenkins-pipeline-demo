@@ -5,16 +5,18 @@ stage("Welcome!") {
 }
 
 def do_work_func(message) {
-	stage("Some work") {
-		ws("my_workspace") {
-			println "Running on node ${env.NODE_NAME}"
-			println(message)
+	node() {
+		stage("Some work") {
+			ws("my_workspace") {
+				println "Running on node ${env.NODE_NAME}"
+				println(message)
 
-			sh 'ls -la'
+				sh 'ls -la'
 
-			sh '''
-				pwd
-			'''
+				sh '''
+					pwd
+				'''
+			}
 		}
 	}
 }
