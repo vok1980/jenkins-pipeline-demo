@@ -19,8 +19,12 @@ def do_work_func(message) {
 }
 
 node() {
-	do_work_func(1111111111111111)
-	do_work_func(2222222222222222)
+	parallel 'do 1': {
+		do_work_func(1111111111111111)
+	},
+	'do 2': {
+		do_work_func(2222222222222222)
+	}
 }
 
 stage("Bye!") {
