@@ -3,9 +3,11 @@ stage("Welcome!") {
 	println("Hello world!")
 }
 
-node() {
+def do_work_func(message) {
 	stage("Some work") {
 		ws("my_workspace") {
+			println(message)
+
 			sh 'ls -la'
 
 			sh '''
@@ -13,6 +15,11 @@ node() {
 			'''
 		}
 	}
+}
+
+node() {
+	do_work_func(1111111111111111)
+	do_work_func(2222222222222222)
 }
 
 stage("Bye!") {
