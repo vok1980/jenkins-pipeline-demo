@@ -1,3 +1,5 @@
 #!/usr/bin/env groovy
 
-println("Hello world!")
+stage("Welcome!") {
+	println("Hello world!")
+}
