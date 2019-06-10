@@ -4,12 +4,11 @@ stage("Welcome!") {
 	println("Hello world!")
 }
 
-def do_work_func(message) {
-	node() {
+def do_work_func(lable) {
+	node(lable) {
 		stage("Some work") {
 			ws("my_workspace") {
 				println "Running on node ${env.NODE_NAME}"
-				println(message)
 
 				sh 'ls -la'
 
@@ -22,11 +21,11 @@ def do_work_func(message) {
 }
 
 node() {
-	parallel 'do 1': {
-		do_work_func(1111111111111111)
+	parallel 'do linux': {
+		do_work_func('linux')
 	},
-	'do 2': {
-		do_work_func(2222222222222222)
+	'do windows': {
+		do_work_func('windows')
 	}
 }
 
