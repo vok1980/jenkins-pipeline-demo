@@ -10,11 +10,16 @@ def do_work_func(lable) {
 			ws("my_workspace") {
 				println "Running on node ${env.NODE_NAME}"
 
-				sh 'ls -la'
+				if (isUnix()) {
+					sh 'ls -la'
 
-				sh '''
-					pwd
-				'''
+					sh '''
+						pwd
+					'''
+				}
+				else {
+					bat 'dir'
+				}
 			}
 		}
 	}
