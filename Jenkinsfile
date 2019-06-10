@@ -10,15 +10,29 @@ def do_work_func(lable) {
 			ws("my_workspace") {
 				println "Running on node ${env.NODE_NAME}"
 
-				if (isUnix()) {
-					sh 'ls -la'
+				checkout scm
 
-					sh '''
-						pwd
-					'''
-				}
-				else {
-					bat 'dir'
+				dir('build') {
+					deleteDir()
+					writeFile file:'dummy', text:''
+
+					if (isUnix()) {
+						sh 'ls -la'
+
+						sh '''
+							pwd
+						'''
+
+						sh 'cmake -DCMAKE_BUILD_TYPE=Release ..'
+						sh 'cmake --build .'
+						sh 'ctest --output-on-failure'
+					}
+					else {
+						bat 'dir'
+						bat 'cmake -S .. -B .'
+						bat 'cmake --build . --config Release'
+						bat 'ctest --output-on-failure -C Release'
+					}
 				}
 			}
 		}
