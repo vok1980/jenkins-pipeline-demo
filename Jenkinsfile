@@ -2,6 +2,18 @@
 
 stage("Welcome!") {
 	println("Hello world!")
+
+	properties([
+		buildDiscarder(
+			logRotator(
+				artifactDaysToKeepStr: '2',
+				artifactNumToKeepStr: '3',
+				daysToKeepStr: '3',
+				numToKeepStr: '5'
+			)
+		),
+		pipelineTriggers([cron('H/2 * * * *')]),
+	])
 }
 
 def do_work_func(lable) {
