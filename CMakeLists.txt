@@ -9,4 +9,4 @@ add_test(NAME test_sr_100 COMMAND ./demo 100)
 set_tests_properties (test_sr_100 PROPERTIES PASS_REGULAR_EXPRESSION "100 is 10")
 
 add_test(NAME test_sr_25 COMMAND ./demo 25)
-set_tests_properties (test_sr_25 PROPERTIES PASS_REGULAR_EXPRESSION "25 is 5")
+set_tests_properties (test_sr_25 PROPERTIES PASS_REGULAR_EXPRESSION "25 is 6")
