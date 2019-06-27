@@ -71,6 +71,15 @@ node() {
 	}
 }
 
+stage("Run build job") {
+	build job: 'echo',
+		wait: true,
+		propagate: true,
+		parameters: [
+			string(name: 'TEXT', value: "qwerty!"),
+		]
+}
+
 stage("Bye!") {
 	println("BB2A")
 	println("!!!!")
