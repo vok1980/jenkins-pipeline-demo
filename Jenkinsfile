@@ -72,12 +72,11 @@ node() {
 }
 
 stage("Run build job") {
-	build job: 'echo',
-		wait: true,
-		propagate: true,
-		parameters: [
-			string(name: 'TEXT', value: "qwerty!"),
-		]
+	node() {
+		checkout scm
+		def run_job = load "run_job.groovy"
+		run_job.job_echo("qwerty!")
+	}
 }
 
 stage("Bye!") {
