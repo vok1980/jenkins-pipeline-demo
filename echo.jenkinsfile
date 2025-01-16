@@ -1,0 +1,16 @@
+#!/usr/bin/env groovy
+
+properties([
+	parameters([
+		string(
+			name: 'TEXT',
+			defaultValue: '',
+			description: '', ),
+	])
+])
+
+node("linux || windows") {
+	stage("print") {
+		println(params.TEXT)
+	}
+}
