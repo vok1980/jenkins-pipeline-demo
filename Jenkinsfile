@@ -4,6 +4,7 @@ stage("Welcome!") {
 	println("Hello world!")
 
 	properties([
+		disableConcurrentBuilds(),
 		buildDiscarder(
 			logRotator(
 				artifactDaysToKeepStr: '2',
