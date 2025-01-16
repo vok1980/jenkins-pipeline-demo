@@ -63,7 +63,7 @@ def do_work_func(lable) {
 	}
 }
 
-node() {
+node("main") {
 	parallel 'do linux': {
 		do_work_func('linux')
 	},
@@ -73,7 +73,7 @@ node() {
 }
 
 stage("Run build job") {
-	node() {
+	node("main") {
 		checkout scm
 		def run_job = load "run_job.groovy"
 		run_job.job_echo("qwerty!")
